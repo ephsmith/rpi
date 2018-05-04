@@ -5,13 +5,26 @@ import time
 
 
 class USSensor():
-    '''Simple class for interfacing an HC-SR04'''
+    '''Simple class for interfacing an HC-SR04
+
+    Example:
+    -------
+
+    s = USSensor(echo=17, trigger=4)
+    distance = s.distance
+
+    See the following for information on HC-SR04 hardware interfacing:
+
+    https://projects.raspberrypi.org/en/projects/ultrasonic-theremin/4
+
+    In short, use a voltage-divider to reduce the HC-SR04 ECHO output
+    to acceptable levels for the RPi.
+    '''
 
     def __init__(self, echo=None, trigger=None):
         self._echo = echo
         self._trigger = trigger
         self._pulse_begin = 0
-        self.distance = None  # default value for unmeasured distance
         io.setmode(io.BCM)
         io.setup(self._echo, io.IN)
         io.setup(self._trigger, io.OUT)
@@ -33,14 +46,6 @@ class USSensor():
             time.sleep(0.00001)
             io.output(self._trigger, False)
 
-
-# Test Driver
-sensor = USSensor(echo=17, trigger=4)
-try:
-    while True:
-        print(sensor.distance)
-        time.sleep(1)
-except KeyboardInterrupt:
-    print('\n' + '#' * 15 + '\tExiting\t' + '#' * 15)
-    io.cleanup()
-    print('GPIO Cleanup Complete!!')
+    def __del__(self):
+        io.remove_event_detect(self._echo)
+        io.cleanup()
