@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Author: Forrest Smith
-from ussensor import USSensor
+from ussensor import ussensor
 from time import sleep
 from pythonosc import osc_message_builder
 from pythonosc import udp_client
@@ -30,7 +30,7 @@ def clip_and_scale(p,
     return m*normed + b
 
 
-sensor = USSensor(echo=17, trigger=4)
+sensor = ussensor(echo=17, trigger=4)
 sender = udp_client.SimpleUDPClient('localhost', 4559)
 opts = {'min_in': 20, 'max_in': 200, 'min_out': 50, 'max_out': 80}
 

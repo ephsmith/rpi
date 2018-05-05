@@ -4,13 +4,13 @@ import RPi.GPIO as io
 import time
 
 
-class USSensor():
+class ussensor():
     '''Simple class for interfacing an HC-SR04
 
     Example:
     -------
 
-    s = USSensor(echo=17, trigger=4)
+    s = ussensor(echo=17, trigger=4)
     distance = s.distance
 
     See the following for information on HC-SR04 hardware interfacing:
