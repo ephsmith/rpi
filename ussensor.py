@@ -25,6 +25,7 @@ class USSensor():
         self._echo = echo
         self._trigger = trigger
         self._pulse_begin = 0
+        self.distance = 0
         io.setmode(io.BCM)
         io.setup(self._echo, io.IN)
         io.setup(self._trigger, io.OUT)
