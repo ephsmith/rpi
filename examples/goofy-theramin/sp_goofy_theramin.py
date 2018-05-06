@@ -20,7 +20,7 @@ def clip_and_scale(p,
     opts = {'min_in': 0, 'max_in': 100,
             'min_out': 100, 'max_out': 200}
 
-    >>> print(scale_and_clip(120, **opts))
+    >>> print(clip_and_scale(120, **opts))
     >>> 200
     '''
     p = max(min_in, min(max_in, p))
@@ -30,14 +30,14 @@ def clip_and_scale(p,
     return m*normed + b
 
 
-sensor = ussensor(echo=17, trigger=4)
+sensor = ussensor(echo=17, trigger=4, poll=True)
 sender = udp_client.SimpleUDPClient('localhost', 4559)
 opts = {'min_in': 20, 'max_in': 200, 'min_out': 50, 'max_out': 80}
 
 try:
     print('\nSending some notes!')
     while True:
-        p = clip_and_scale(sensor.distance, **opts)
+        p = clip_and_scale(sensor.distance(), **opts)
         pitch = round(p)
         # sender.send_message('/play_this', pitch)
         sender.send_message('/play', pitch)
