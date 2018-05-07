@@ -87,3 +87,6 @@ class ussensor():
             return m
         else:
             return self._distance
+
+    def cleanup(self):
+        io.cleanup()
