@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Author: Forrest Smith
-from ussensor import ussensor
+from rpi.ussensor import ussensor
 from time import sleep
 from pythonosc import osc_message_builder
 from pythonosc import udp_client
@@ -32,7 +32,7 @@ def clip_and_scale(p,
 
 sensor = ussensor(echo=17, trigger=4, poll=True)
 sender = udp_client.SimpleUDPClient('localhost', 4559)
-opts = {'min_in': 20, 'max_in': 200, 'min_out': 50, 'max_out': 80}
+opts = {'min_in': 2, 'max_in': 20, 'min_out': 40, 'max_out': 80}
 
 try:
     print('\nSending some notes!')
