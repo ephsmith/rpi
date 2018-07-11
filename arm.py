@@ -112,6 +112,9 @@ class Arm(object):
 
         return s.encode()
 
-    def move(self):
+    def move(self, **kwargs):
         '''Sends the proper commands to the SCC32 using com'''
+        if kwargs:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
         self.com.write(self.to_command())
