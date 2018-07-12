@@ -27,21 +27,26 @@ Change to the top-level project directory and run
 # Importing the modules
 Here's an example that imports the `ussensor` module and reads a distance measurement.
 
-    from rpi.ussensor import ussensor
+~~~ python
+from rpi.ussensor import ussensor
 
-    sensor = ussensor(echo=17, trigger=4, poll=True)
-    print(sensor.distance())
+sensor = ussensor(echo=17, trigger=4, poll=True)
+print(sensor.distance())
+~~~
 
 *Note*: If you installed into a virtual environment, you'll need to activate the venv first.
 
 The Arm class is currently useful for the LynxMotion AL5B/SSC-23U
 combination. Here's an example:
 
-    from rpi.arm import Arm
-	import serial
+~~~ python
 
-    com = serial.Serial('/dev/ttyUSB0', 9600)
-	a = Arm(com=com)
+from rpi.arm import Arm
+import serial
 
-	# Set all servo positions to midpoint on the AL5B
-	a.move()
+com = serial.Serial('/dev/ttyUSB0', 9600)
+a = Arm(com=com)
+
+# Set all servo positions to midpoint on the AL5B
+a.move()
+~~~
