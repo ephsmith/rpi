@@ -3,6 +3,7 @@
 #
 # Credits: Inspired by a python script authored by Garry Spencer
 
+
 def scale(num, min, max):
     '''
     For num between 0 and 100, returns number scaled to a range
@@ -22,10 +23,28 @@ class Arm(object):
 
     All parameters are optional but must be between 1 and 100.
     Default value is 50.
+
+    A note on servo channels:
+    -------------------------
+    The channels here are numbered from 0 to 4 with 0 being the
+    base and 4 the gripper. Here is the full list of the channel
+    assignments:
+
+    CH | Servo
+    ------------
+    0  | base
+    1  | shoulder
+    2  | elbow
+    3  | wrist
+    4  | gripper
+    _____________
     '''
+
     def __init__(self, speed=50,
                  base=50, shoulder=50,
-                 elbow=50, wrist=50, gripper=50, com=None):
+                 elbow=50, wrist=50,
+                 gripper=50, com=None,
+                 time=0):
         self.speed = speed
         self.base = base
         self.shoulder = shoulder
@@ -33,6 +52,7 @@ class Arm(object):
         self.wrist = wrist
         self.gripper = gripper
         self.com = com
+        self.time = time
         self.scale_params()
 
     def __str__(self):
@@ -53,6 +73,13 @@ class Arm(object):
             super().__setattr__(attr, value)
             return
 
+        if attr == 'time':
+            if value > 0 and value <= 65535:
+                super().__setattr__(attr, int(value))
+            else:
+                raise ValueError(
+                    '{}.time must be between 0 and 65535'.format(
+                        self.__class__.__name__))
         scaled_attr = '_' + attr
         if attr == 'speed':
             scaled_value = scale(value, 100, 900)
@@ -72,6 +99,14 @@ class Arm(object):
         >>>d = {'speed':100, 'base':50}
         >>>my_arm.set_params(**d)
         '''
+
+        # Assert that keys are valid class attributes
+        for key, value in kwargs.items():
+            if not hasattr(self, key):
+                raise AttributeError(
+                    '{}.{} is invalid parameter.'.format(
+                        self.__class__.__name__, key))
+
         for key, value in kwargs.items():
             setattr(self, key, value)
 
@@ -84,7 +119,8 @@ class Arm(object):
                   'elbow': 50,
                   'wrist': 50,
                   'gripper': 50,
-                  'speed': 50}
+                  'speed': 50,
+                  'time': 0}
 
         self.set_params(**params)
 
@@ -107,19 +143,23 @@ class Arm(object):
 
     def to_command(self):
         '''Returns a command string for the current parameters'''
+        if self.time > 0:
+            t = '{}'.format(self.time)
+
         param_list = [self._base, self._shoulder,
                       self._elbow, self._wrist,
                       self._gripper]
 
         s = ' '.join(['#{} P{} S{}'.format(k, param, self._speed)
                       for k, param in enumerate(param_list)])
-        s = s + chr(13)
+
+        # Note. The T parameter affects all servos, so append it.
+        s = s + t + chr(13)
 
         return s.encode()
 
     def move(self, **kwargs):
         '''Sends the proper commands to the SCC32 using com'''
         if kwargs:
-            for key, value in kwargs.items():
-                setattr(self, key, value)
+            self.set_params(**kwargs)
         self.com.write(self.to_command())
