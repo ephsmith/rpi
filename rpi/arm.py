@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+# Author: Forrest Smith
+#
+# Credits: Inspired by a python script authored by Garry Spencer
+
 def scale(num, min, max):
     '''
     For num between 0 and 100, returns number scaled to a range
