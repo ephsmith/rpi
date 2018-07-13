@@ -11,4 +11,7 @@ setup(name='rpi',
       author_email='fasmith0229@gmail.com',
       license='MIT',
       packages=['rpi'],
+      install_requires=[
+          'pyserial',
+          ],
       zip_safe=False)
