@@ -91,6 +91,13 @@ class lcd(object):
         else:
             raise ValueError('brightness should be in the range [1,8] decimal')
 
+    def display_clear(self):
+        '''
+        display_clear: clears the display.  Note: cursor is visibility is not
+        affected. Cursor position is set to 0.
+        '''
+        self.command(self.CLEAR_SCREEN)
+
     def display_right(self):
         '''
         display_right: shifts the display to the right 1 space
