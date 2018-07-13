@@ -12,8 +12,10 @@ Change to the top-level repo dir and install using `pip3`:
 # Installing into a virtual environment (better)
 `virtualenvwrapper` is probably the fastest way to start using Python virtual environments if you aren't already.
 
-## Install `virtualenvwrapper` using the
-[Basic Installation guide](http://virtualenvwrapper.readthedocs.io/en/latest/install.html#basic-installation).
+## Install `virtualenvwrapper`
+The
+[Basic Installation guide](http://virtualenvwrapper.readthedocs.io/en/latest/install.html#basic-installation)
+is a great place to start. However...
 
 If you prefer not to follow the install guide, these commands will
 get you up and running quickly on the RaspberryPi:
@@ -25,13 +27,15 @@ echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
 source ~/.bashrc
 ~~~
 
-## Create the virtual environment. For RaspberryPi projects, its best to configure your virtual environment to use site-packages so that modules like RPi.GPIO are still accessible.  Modules here require RPi.GPIO. Create the virtual env like so:
+## Create the virtual environment.
+For RaspberryPi projects, its best to configure your virtual environment to use site-packages so that modules like RPi.GPIO are still accessible.  Modules here require RPi.GPIO. Create the virtual env like so:
 
     mkvirtualenv --python=python3 --system-site-packages <env-name-here>
 
 `virtualenvwrapper` will create the virtual env and activate it (your prompt should indicate this).
 
-## Install the `rpi` package. Change to the top-level project directory and run
+## Install the `rpi` package.
+Change to the top-level project directory and run
 
     pip install .
 
