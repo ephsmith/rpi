@@ -55,9 +55,10 @@ sensor = ussensor(echo=17, trigger=4, poll=True)
 print(sensor.distance())
 ~~~
 
-*Note*: If you installed into a virtual environment, you'll need to activate the venv first.
+*Note*: If you installed into a virtual environment, you'll need to
+ activate the venv *prior to executing the script*.
 
-The Arm class is currently useful for the LynxMotion AL5B/SSC-23U
+The `Arm` class is currently useful for the LynxMotion AL5B/SSC-23U
 combination. Here's an example:
 
 ~~~ python
@@ -71,3 +72,20 @@ a = Arm(com=com)
 # Set all servo positions to midpoint on the AL5B
 a.move()
 ~~~
+
+Here's a quick example that interfaces a NewHaven LCD display and
+reports a message:
+
+~~~ python
+import serial
+from rpi.lcd import lcd
+
+com = serial.Serial('/dev/ttyS0', 9600)
+disp = lcd(com=com)
+
+disp.display_clear()
+disp.text('Hello World')
+~~~
+
+# Examples
+Examples are available under the `examples` directory. See [lcd_clock.py](examples/lcd_clock.py)].
