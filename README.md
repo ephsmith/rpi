@@ -32,7 +32,13 @@ For RaspberryPi projects, its best to configure your virtual environment to use 
 
     mkvirtualenv --python=python3 --system-site-packages <env-name-here>
 
-`virtualenvwrapper` will create the virtual env and activate it (your prompt should indicate this).
+`virtualenvwrapper` will create the virtualenv directory under the
+`WORKON_HOME` directory and activate it. Your prompt should indicate
+this with the env name in parens--like so:
+
+~~~ bash
+(env-name-here) user@pi$
+~~~
 
 ## Install the `rpi` package.
 Change to the top-level project directory and run
