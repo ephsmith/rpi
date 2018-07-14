@@ -74,7 +74,7 @@ class Arm(object):
             return
 
         if attr == 'time':
-            if value > 0 and value <= 65535:
+            if value >= 0 and value <= 65535:
                 super().__setattr__(attr, int(value))
             else:
                 raise ValueError(
@@ -143,6 +143,7 @@ class Arm(object):
 
     def to_command(self):
         '''Returns a command string for the current parameters'''
+        t = ''
         if self.time > 0:
             t = '{}'.format(self.time)
 

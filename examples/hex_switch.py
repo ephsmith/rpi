@@ -30,23 +30,22 @@ gpio.setmode(gpio.BCM)
 for channel in inputs:
     gpio.setup(channel, gpio.IN, pull_up_down=gpio.PUD_DOWN)
 
+
 # Base output string
 
 try:
-# Loop forever and read the input states every 2 seconds.
+    # Loop forever and read the input states every 2 seconds.
     while True:
         s = ''
         num = 0
         for n,b in enumerate(inputs):
-                if gpio.input(b):
-                    s += '1'
-                    num += 2 ** (3-n)
-                else:
-                    s += '0'
-                    
+            if gpio.input(b):
+                s += '1'
+                num += 2 ** (3-n)
+            else:
+                s += '0'
+                
         print('Decimal: {}, Hex: 0x{:1X} Binary: {}'.format(num, num, s))
         time.sleep(2)
 except KeyboardInterrupt:
-    print('Thanks for switching!  Bye!')
-
-                
+    print('Thanks for switching! Bye!')
