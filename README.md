@@ -88,4 +88,4 @@ disp.text('Hello World')
 ~~~
 
 # Examples
-Examples are available under the `examples` directory. See [lcd_clock.py](https://github.com/rpi/examples/lcd_clock.py).
+Examples are available under the `examples` directory.
