@@ -28,7 +28,8 @@ disp.set_brightness(1)
 time.sleep(1)
 disp.set_brightness(5)
 disp.display_version()  # firmware ver is displayed
-
+time.sleep(2)
+disp.command(disp.CLEAR_SCREEN)
 # Now, make a basic clock using the lcd as a
 # display.
 #
@@ -39,9 +40,9 @@ while True:
     # use strftime to format the time string
     # appropriately. See strftime documentation
     disp.text(time.strftime('%I:%M:%S %p'))
-
+    disp.set_cursor(0)
     # call our custom delay
     delay(0.5)
 
     # clear the screen
-    disp.command(disp.CLEAR_SCREEN)
+    # disp.command(disp.CLEAR_SCREEN)
