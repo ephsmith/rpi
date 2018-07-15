@@ -18,7 +18,7 @@ class Arm(object):
     parameters needed to build / send a serial command
     to the Lynxmotion controller.
 
-    The command is sent using the `com' attribute. This should
+    The command is sent using the `com` attribute. This should
     be a valid pyserial object.
 
     All parameters are optional but must be between 1 and 100.
@@ -92,12 +92,12 @@ class Arm(object):
         """
         Update params based on key,value pairs in kwargs.
         Example:
-        >>>my_arm = Arm()
-        >>>my_arm.set_params(speed=100,base=50)
+            my_arm = Arm()
+            my_arm.set_params(speed=100,base=50)
 
         or with a dictionary of key,value pairs
-        >>>d = {'speed':100, 'base':50}
-        >>>my_arm.set_params(**d)
+            d = {'speed':100, 'base':50}
+            my_arm.set_params(**d)
         """
 
         # Assert that keys are valid class attributes
