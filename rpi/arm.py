@@ -5,15 +5,15 @@
 
 
 def scale(num, min, max):
-    '''
+    """
     For num between 0 and 100, returns number scaled to a range
-    based on Garry's scaling.
-    '''
+    based on Garry"s scaling.
+    """
     return min + int((num / 100.0) * (max))
 
 
 class Arm(object):
-    '''
+    """
     This class defines a command object to hold various
     parameters needed to build / send a serial command
     to the Lynxmotion controller.
@@ -38,7 +38,7 @@ class Arm(object):
     3  | wrist
     4  | gripper
     _____________
-    '''
+    """
 
     def __init__(self, speed=50,
                  base=50, shoulder=50,
@@ -56,10 +56,10 @@ class Arm(object):
         self.scale_params()
 
     def __str__(self):
-        '''
+        """
         return a string representation of an Arm instance.
         Allows the use of print(my_arm)
-        '''
+        """
         return vars(self).__str__()
 
     def __setattr__(self, attr, value):
@@ -89,7 +89,7 @@ class Arm(object):
         super().__setattr__(scaled_attr, scaled_value)
 
     def set_params(self, **kwargs):
-        '''
+        """
         Update params based on key,value pairs in kwargs.
         Example:
         >>>my_arm = Arm()
@@ -98,7 +98,7 @@ class Arm(object):
         or with a dictionary of key,value pairs
         >>>d = {'speed':100, 'base':50}
         >>>my_arm.set_params(**d)
-        '''
+        """
 
         # Assert that keys are valid class attributes
         for key, value in kwargs.items():
@@ -111,9 +111,9 @@ class Arm(object):
             setattr(self, key, value)
 
     def default_params(self):
-        '''
+        """
         Returns all position parameters to the default of 50
-        '''
+        """
         params = {'base': 50,
                   'shoulder': 50,
                   'elbow': 50,
@@ -133,16 +133,16 @@ class Arm(object):
                     scale(getattr(self, attr[1:]), 500, 2000))
 
     def dump_params(self):
-        '''
+        """
         Returns a dictionary of position/speed params.
 
         This is especially useful when saving teach points.
-        '''
+        """
         params = ('base', 'shoulder', 'elbow', 'wrist', 'gripper')
         return {p: getattr(self, p) for p in params}
 
     def to_command(self):
-        '''Returns a command string for the current parameters'''
+        """Returns a command string for the current parameters"""
         t = ''
         if self.time > 0:
             t = '{}'.format(self.time)
@@ -160,14 +160,14 @@ class Arm(object):
         return s.encode()
 
     def home(self):
-        '''
+        """
         Returns all servos to the midpoint (home) position.
-        '''
+        """
         self.default_params()
         self.move()
-        
+
     def move(self, **kwargs):
-        '''Sends the proper commands to the SCC32 using com'''
+        """Sends the proper commands to the SCC32 using com"""
         if kwargs:
             self.set_params(**kwargs)
         self.com.write(self.to_command())
