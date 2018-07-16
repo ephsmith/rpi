@@ -14,7 +14,6 @@ The easiest introduction to Python is through IDLE, a Python development environ
 
 IDLE gives you a REPL (Read-Evaluate-Print-Loop), which is a prompt you can enter Python commands into. Because it's a REPL, you even get the output of commands printed to the screen without using `print`.
 
-**Note**: two versions of Python are available — Python 2 and Python 3. Python 3 has was first released in 2008 and Python 2 development ended with 2.7, which was released in 2010. Python 3 is recommended, but Python 2 is available for legacy applications which do not support Python 3 yet.
 
 You can use variables if you need to but you can even use it like a calculator. For example:
 
