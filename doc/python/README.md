@@ -247,58 +247,6 @@ The standard built-in Python shell is accessed by typing `python3` in the termin
 
 This shell is a prompt ready for Python commands to be entered. You can use this in the same way as IDLE, but it does not have syntax highlighting or autocompletion. You can look back on the history of the commands you've entered in the REPL by using the <kbd>Up/Down</kbd> keys. Use `Ctrl + D` to exit.
 
-### IPython
-
-IPython is an interactive Python shell with syntax highlighting, autocompletion, pretty printing, built-in documentation, and more. IPython is not installed by default. Install with:
-
-```bash
-sudo pip3 install ipython
-```
-
-Then run with `ipython` from the command line. It works like the standard `python3`, but has more features. Try typing `len?` and hitting `Enter`. You're shown information including the docstring for the `len` function:
-
-```python
-Type:       builtin_function_or_method
-String Form:<built-in function len>
-Namespace:  Python builtin
-Docstring:
-len(object) -> integer
-
-Return the number of items of a sequence or mapping.
-```
-
-Try the following dictionary comprehension:
-
-```python
-{i: i ** 3 for i in range(12)}
-```
-
-This will pretty print the following:
-
-```python
-{0: 0,
- 1: 1,
- 2: 8,
- 3: 27,
- 4: 64,
- 5: 125,
- 6: 216,
- 7: 343,
- 8: 512,
- 9: 729,
- 10: 1000,
- 11: 1331}
-```
-
-In the standard Python shell, this would have printed on one line:
-
-```python
-{0: 0, 1: 1, 2: 8, 3: 27, 4: 64, 5: 125, 6: 216, 7: 343, 8: 512, 9: 729, 10: 1000, 11: 1331}
-```
-
-![Python vs ipython](images/python-vs-ipython.png)
-
-You can look back on the history of the commands you've entered in the REPL by using the <kbd>Up/Down</kbd> keys like in `python`. The history also persists to the next session, so you can exit `ipython` and return (or switch between v2/3) and the history remains. Use `Ctrl + D` to exit.
 
 ## Installing Python libraries
 
@@ -331,14 +279,15 @@ sudo pip3 install simplejson
 
 Read more on installing software in Python [here](../../linux/software/python.md).
 
-#### piwheels
-
-The official Python Package Index (PyPI) hosts files uploaded by package maintainers. Some packages require compilation (compiling C/C++ or similar code) in order to install them, which can be a time-consuming task, particlarly on the single-core Raspberry Pi 1 or Pi Zero.
-
-piwheels is a service providing pre-compiled packages (called *Python wheels*) ready for use on the Raspberry Pi. Raspbian Stretch is pre-configired to use piwheels for pip. Read more about the piwheels project at [www.piwheels.org](https://www.piwheels.org/).
-
 ## More
 
 - [GPIO with Python](../gpio/python/README.md)
 - [Official Python website](https://www.python.org/)
 - [Official Python documentation](https://www.python.org/doc/)
+
+## License  / Attribution
+This work was adopted from
+[raspberrypi/documentation](https://github.com/raspberrypi/documentation/tree/master/usage/python),
+a work licensed under
+[Creative Commons Attribution / Share-Alike](https://creativecommons.org/licenses/by-sa/4.0/). As
+a derivative, this work is licensed in the same way.
