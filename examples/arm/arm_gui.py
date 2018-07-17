@@ -55,6 +55,7 @@ gripper = Slider(app, grid=[1, 4], start=1, end=100)
 
 for s in (base, shoulder, elbow, wrist, gripper):
     s.value = 50
+    s.width = 350
 
 
 base_text = Text(app, text='Base',
@@ -68,18 +69,25 @@ wrist_text = Text(app, text='Wrist',
 gripper_text = Text(app, text='Gripper',
                     grid=[0, 4], align='left')
 
+for t in (base_text, shoulder_text, elbow_text,
+          wrist_text, gripper_text):
+    t.width=10
+
 move_button = PushButton(app, text='Move',command=move,
-                         grid=[1, 5])
+                         grid=[1, 5], align='right')
 
-pose_name = TextBox(app, grid=[0, 6])
+pose_name = TextBox(app, grid=[1, 6], align='right')
+pose_name.width = 16
 
-save_button = PushButton(app, text='Save Pose',
-                         grid=[0, 7], command=save_pose)
+save_button = PushButton(app, text='Save Pose', align='right',
+                         grid=[1, 7], command=save_pose)
 
-pose_combo = Combo(app, options=['home'], grid=[2, 0], command=update_sliders)
-pose_combo.width = 30
+pose_combo = Combo(app, options=['home'], align='right',
+                   grid=[1, 8], command=update_sliders)
 
-pose_delete_button = PushButton(app, text='Delete Pose',
-                                grid=[2, 1], command=delete_pose)
+pose_combo.width = 16
+
+pose_delete_button = PushButton(app, text='Delete Pose', align='right',
+                                grid=[1, 9], command=delete_pose)
 
 app.display()
