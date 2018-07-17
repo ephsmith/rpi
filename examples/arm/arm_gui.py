@@ -12,13 +12,12 @@ poses = {'home': home}
 
 app = App(title='Sliders', layout='grid')
 
+
 def get_pose():
     return {k: v for k, v in zip(('base', 'shoulder',
                                   'elbow', 'wrist', 'gripper'),
                                  (base.value, shoulder.value, elbow.value,
                                   wrist.value, gripper.value))}
-
-
 def save_pose():
     # print('Pose to save: {}\n{}'.format(pose_name.value, get_pose()))
     poses[pose_name.value] = get_pose()
@@ -27,15 +26,18 @@ def save_pose():
 
 
 def update_sliders(key):
-    if key == '-':
-        return
-    else:
-        d = poses[key]
-        base.value = d['base']
-        shoulder.value = d['shoulder']
-        elbow.value = d['elbow']
-        wrist.value = d['wrist']
-        gripper.value = d['gripper']
+    d = poses[key]
+    base.value = d['base']
+    shoulder.value = d['shoulder']
+    elbow.value = d['elbow']
+    wrist.value = d['wrist']
+    gripper.value = d['gripper']
+
+
+def delete_pose():
+    key = pose_combo.value
+    pose_combo.remove(key)
+    poses.pop(key, None)
 
 
 base = Slider(app, grid=[1, 0], start=1, end=100)
@@ -64,11 +66,13 @@ move_button = PushButton(app, text='Move',
 
 pose_name = TextBox(app, grid=[0, 6])
 
+save_button = PushButton(app, text='Save Pose',
+                         grid=[0, 7], command=save_pose)
+
 pose_combo = Combo(app, options=['home'], grid=[2, 0], command=update_sliders)
 pose_combo.width = 30
 
-
-save_button = PushButton(app, text='Save Pose',
-                         grid=[0, 7], command=save_pose)
+pose_delete_button = PushButton(app, text='Delete Pose',
+                                grid=[2, 1], command=delete_pose)
 
 app.display()
