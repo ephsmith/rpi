@@ -18,6 +18,8 @@ def get_pose():
                                   'elbow', 'wrist', 'gripper'),
                                  (base.value, shoulder.value, elbow.value,
                                   wrist.value, gripper.value))}
+
+
 def save_pose():
     # print('Pose to save: {}\n{}'.format(pose_name.value, get_pose()))
     poses[pose_name.value] = get_pose()
