@@ -2,15 +2,18 @@
 # Author: Forrest Smith
 from guizero import App, Text, PushButton, Slider
 from guizero import TextBox, Combo
+from rpi.arm import Arm
+import serial
 
 home = {k: 50 for k in ('base', 'shoulder',
                         'elbow', 'wrist',
-                        'gripper')
-        }
+                        'gripper')}
 
 poses = {'home': home}
 
 app = App(title='Sliders', layout='grid')
+com = serial.Serial('/dev/ttyUSB0', 9600)
+arm = Arm(com=com)
 
 
 def get_pose():
@@ -40,6 +43,10 @@ def delete_pose():
     poses.pop(key, None)
 
 
+def move():
+    arm.move(**get_pose())
+
+
 base = Slider(app, grid=[1, 0], start=1, end=100)
 shoulder = Slider(app, grid=[1, 1], start=1, end=100)
 elbow = Slider(app, grid=[1, 2], start=1, end=100)
@@ -61,7 +68,7 @@ wrist_text = Text(app, text='Wrist',
 gripper_text = Text(app, text='Gripper',
                     grid=[0, 4], align='left')
 
-move_button = PushButton(app, text='Move',
+move_button = PushButton(app, text='Move',command=move,
                          grid=[1, 5])
 
 pose_name = TextBox(app, grid=[0, 6])
