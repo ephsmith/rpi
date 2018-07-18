@@ -15,7 +15,7 @@ git pull origin master
 #+END_SRC
 
 * Copy the example files
-Initially, it is best to copy the example files to a location outside the repository. The ~makefile~ included in the examples directory will do this for you.  Think of it as an install script. To 'install' the examples ~cd~ into the examples in the repository and issue the ~make~ command.
+Initially, it is best to copy the example files to a location outside the repository. The ~makefile~ included in the examples directory will do this for you.  Think of it as an install script. To install the examples,  ~cd~ into the examples in the repository and issue the ~make~ command.
 
 The following commands assume that the ~rpi~ repository is in your home directory:
 
@@ -36,6 +36,12 @@ The files will be copied to ~/home/pi/dev~. Your ~dev~ directory should look lik
 └── lcd
     └── lcd_clock.py
 #+END_EXAMPLE
+
+You can quickly validate the install by issuing the following command:
+
+#+BEGIN_SRC bash
+tree ~/dev
+#+END_SRC
 
 * Running Example Files from Terminal
 To run any example file, simply issue the command ~python3 <path/to/py-file>~.  The following code changes to the ~~/dev/arm~ directory and runs the ~arm_gui.py~ script:
