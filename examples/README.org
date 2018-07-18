@@ -2,8 +2,9 @@
 There are three basic steps to using the examples:
 
 1. pull the most current version of the repository
-2. copy the example files to a location of your choosing
-3. run an example
+2. install the ~rpi~ package
+3. copy the example files to a location of your choosing
+4. run an example
 
 The next sections will cover each step.
 
@@ -12,6 +13,15 @@ The following commands assume you have the repo stored in your home directory:
 #+BEGIN_SRC bash
 cd ~/rpi
 git pull origin master
+#+END_SRC
+
+* Install the ~rpi~ package
+The following commands assume that the repo is stored in your home
+directory:
+
+#+BEGIN_SRC bash
+cd ~/rpi
+sudo pip3 install .
 #+END_SRC
 
 * Copy the example files
