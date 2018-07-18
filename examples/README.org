@@ -59,7 +59,8 @@ tree ~/dev
 the support code.  These can be opened using the Chromium browser.
 
 * Running Example Files from Terminal
-To run any example file, simply issue the command ~python3 <path/to/py-file>~.  The following code changes to the ~~/dev/arm~ directory and runs the ~arm_gui.py~ script:
+To run any example file, simply issue the command ~python3
+<path/to/py-file>~.  The following code changes to the ~/home/dev/arm~ and runs the ~arm_gui.py~ script:
 
 #+BEGIN_SRC bash
 cd ~/dev/arm
