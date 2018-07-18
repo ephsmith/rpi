@@ -29,11 +29,13 @@ The files will be copied to ~/home/pi/dev~. Your ~dev~ directory should look lik
 #+BEGIN_EXAMPLE
 /home/pi/dev
 ├── arm
+│   ├── arm_doc.html
 │   ├── arm_demo.py
 │   ├── arm_gui.py
 │   └── arm_test.py
 ├── hex_switch.py
 └── lcd
+│   ├── lcd_doc.html
     └── lcd_clock.py
 #+END_EXAMPLE
 
@@ -42,6 +44,9 @@ You can quickly validate the install by issuing the following command:
 #+BEGIN_SRC bash
 tree ~/dev
 #+END_SRC
+
+/Note:/ The ~lcd~ and ~arm~ directories contain HTML documentation files for
+the support code.  These can be opened using the Chromium browser.
 
 * Running Example Files from Terminal
 To run any example file, simply issue the command ~python3 <path/to/py-file>~.  The following code changes to the ~~/dev/arm~ directory and runs the ~arm_gui.py~ script:
