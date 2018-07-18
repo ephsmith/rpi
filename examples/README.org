@@ -1,0 +1,49 @@
+* Using the Examples
+There are three basic steps to using the examples:
+
+1. pull the most current version of the repository
+2. copy the example files to a location of your choosing
+3. run an example
+
+The next sections will cover each step.
+
+* Pull Changes
+The following commands assume you have the repo stored in your home directory:
+#+BEGIN_SRC bash
+cd ~/rpi
+git pull origin master
+#+END_SRC
+
+* Copy the example files
+Initially, it is best to copy the example files to a location outside the repository. The ~makefile~ included in the examples directory will do this for you.  Think of it as an install script. To 'install' the examples ~cd~ into the examples in the repository and issue the ~make~ command.
+
+The following commands assume that the ~rpi~ repository is in your home directory:
+
+#+BEGIN_SRC bash
+cd ~/rpi/examples
+make
+#+END_SRC
+
+The files will be copied to ~/home/pi/dev~. Your ~dev~ directory should look like:
+
+#+BEGIN_EXAMPLE
+/home/pi/dev
+├── arm
+│   ├── arm_demo.py
+│   ├── arm_gui.py
+│   └── arm_test.py
+├── hex_switch.py
+└── lcd
+    └── lcd_clock.py
+#+END_EXAMPLE
+
+* Running Example Files from Terminal
+To run any example file, simply issue the command ~python3 <path/to/py-file>~.  The following code changes to the ~~/dev/arm~ directory and runs the ~arm_gui.py~ script:
+
+#+BEGIN_SRC bash
+cd ~/dev/arm
+python3 arm_gui.py
+#+END_SRC
+
+* Running Example Files in IDLE
+Open the file you'd like to run using IDLE and press @@html:<key>@@F5@@html:</key>@@ to run the file.
