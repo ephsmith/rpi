@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 # Author: Forrest Smith
-# Title:  lcd.py
+# Title:  lcd_clock.py
 
 from rpi.lcd import lcd
 import time
 import serial
 
+
 def delay(d):
-    '''
-	delay: poll the clock until d seconds have passed
-    '''
+    """delay: poll the clock until d seconds have passed"""
     target = time.clock() + d
     while time.clock() < target:
         pass
