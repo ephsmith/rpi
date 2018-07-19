@@ -13,5 +13,6 @@ setup(name='rpi',
       packages=['rpi'],
       install_requires=[
           'pyserial',
+          'guizero',
           ],
       zip_safe=False)
