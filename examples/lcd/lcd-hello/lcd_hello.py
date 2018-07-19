@@ -28,6 +28,8 @@ sleep(1)
 # to terminate the loop. In IDLE, you may need to
 # restart the python shell.
 while True:
-    disp.clear()
+    disp.display_clear()
+    sleep(0.2)
     text = input()
     disp.text(text)
+    input('Press ENTER to print to LCD again, CTRL-c to quit.')
