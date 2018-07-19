@@ -10,7 +10,7 @@ Hopefully, you've installed the example files using the ~make~ command as descri
 
    2. Connect the GND (black) wire of the LCD to a GND pin on your Pi.
 
-3. Open the ~lcd_hello.py~ file in IDLE (or Thonny). /NOTE: this should be under ~/home/pi/dev/examples/lcd-hello/~.
+3. Open the ~lcd_hello.py~ file in IDLE (or Thonny). /NOTE/: this should be under ~/home/pi/dev/examples/lcd-hello/~.
 4. Run the module use ~F5~ in IDLE.
 
 The script will prompt for user input in the Python shell.  Type the text you'd like to display and keep an eye on the LCD when you press ~Enter~.
