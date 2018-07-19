@@ -1,0 +1,32 @@
+#+OPTIONS: num:nil toc:nil
+#+AUTHOR: Forrest A. Smith
+#+TITLE: Terminal Fun
+** Fun Terminal Programs
+Run the following commands at a terminal prompt to install a couple of fun terminal programs.
+
+#+BEGIN_SRC bash
+sudo apt-get -y install nyancat cowsay
+#+END_SRC
+** Run ~cowsay~
+Issue this command...
+
+#+BEGIN_SRC bash
+cowsay "what do you call a cow with no legs?"
+#+END_SRC
+
+/Funny! Right?/
+
+The cow didn't give us the puchline, so issue this command:
+
+#+BEGIN_SRC bash
+cowsay -d "GROUND BEEF!"
+#+END_SRC
+
+😂
+** Run ~nyancat~
+
+Once you start it, you'll have to type ~CTRL-c~ to get out of it. Issue the following command to Nyan till you just can't Nyan anymore.
+
+#+BEGIN_SRC bash
+nyancat
+#+END_SRC
