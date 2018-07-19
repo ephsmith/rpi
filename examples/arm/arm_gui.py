@@ -4,6 +4,8 @@ from guizero import App, Text, PushButton, Slider
 from guizero import TextBox, Combo
 from rpi.arm import Arm
 import serial
+from sys import platform
+
 
 home = {k: 50 for k in ('base', 'shoulder',
                         'elbow', 'wrist',
@@ -12,7 +14,13 @@ home = {k: 50 for k in ('base', 'shoulder',
 poses = {'home': home}
 
 app = App(title='Sliders', layout='grid')
-com = serial.Serial('/dev/ttyUSB0', 9600)
+
+# The SC shows up as different devices on different OSes
+if platform == 'darwin':
+    com = serial.Serial('/dev/tty.usbserial-AK05CSCD', 9600)
+else:
+    com = serial.Serial('/dev/ttyUSB0', 9600)
+
 arm = Arm(com=com)
 
 
@@ -28,6 +36,11 @@ def save_pose():
     poses[pose_name.value] = get_pose()
     pose_combo.append(pose_name.value)
     pose_name.clear()
+
+
+def update_pose():
+    """Update the current pose with the values of the sliders"""
+    poses[pose_name.value] = get_pose()
 
 
 def update_sliders(key):
@@ -73,9 +86,9 @@ gripper_text = Text(app, text='Gripper',
 
 for t in (base_text, shoulder_text, elbow_text,
           wrist_text, gripper_text):
-    t.width=10
+    t.width = 10
 
-move_button = PushButton(app, text='Move',command=move,
+move_button = PushButton(app, text='Move', command=move,
                          grid=[1, 5], align='right')
 
 pose_name = TextBox(app, grid=[1, 6], align='right')
@@ -90,6 +103,8 @@ pose_combo = Combo(app, options=['home'], align='right',
 pose_combo.width = 16
 
 pose_delete_button = PushButton(app, text='Delete Pose', align='right',
-                                grid=[1, 9], command=delete_pose)
+                                grid=[1, 10], command=delete_pose)
 
+pose_update_button = PushButton(app, text='Update Pose', align='right',
+                                grid=[1, 9], command=update_pose)
 app.display()
