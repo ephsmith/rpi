@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 # Author: Forrest Smith
 from guizero import App, Text, PushButton, Slider
-from guizero import TextBox, Combo
+from guizero import TextBox, Combo, MenuBar
 from rpi.arm import Arm
 import serial
 from sys import platform
+from tkinter import filedialog
+import json
 
 
 home = {k: 50 for k in ('base', 'shoulder',
@@ -13,7 +15,7 @@ home = {k: 50 for k in ('base', 'shoulder',
 
 poses = {'home': home}
 
-app = App(title='Sliders', layout='grid')
+app = App(title='Arm Poser', layout='grid')
 
 # The SC shows up as different devices on different OSes
 if platform == 'darwin':
@@ -61,6 +63,30 @@ def delete_pose():
 def move():
     arm.move(**get_pose())
 
+
+def save():
+    filename = filedialog.asksaveasfilename(initialdir='~/',
+                                            title='Save file')
+    with open(filename, 'w') as f:
+        json.dump(poses, f)
+
+
+def load():
+    filename = filedialog.askopenfilename(initialdir='~/',
+                                          title='Open file')
+    with open(filename, 'r') as f:
+        poses = json.load(f)
+
+    pose_combo.clear()
+    for k in poses.keys():
+        pose_combo.append(k)
+
+
+menubar = MenuBar(app,
+                  toplevel=['File'],
+                  options=[
+                      [['Save Poses', save], ['Load Poses', load]],
+                  ])
 
 base = Slider(app, grid=[1, 0], start=1, end=100)
 shoulder = Slider(app, grid=[1, 1], start=1, end=100)
