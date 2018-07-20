@@ -66,17 +66,14 @@ def move():
 
 def save():
     filename = filedialog.asksaveasfilename(initialdir='~/',
-                                            title='Save file',
-                                            filetypes=(('JSON files',
-                                                        '*.json')))
+                                            title='Save file')
     with open(filename + '.json', 'w') as f:
         json.dump(poses, f)
 
 
 def load():
     filename = filedialog.askopenfilename(initialdir='~/',
-                                          title='Open file',
-                                          filetypes=(('JSON files', '*.json')))
+                                          title='Open file')
     with open(filename, 'r') as f:
         poses = json.load(f)
 
