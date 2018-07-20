@@ -1,0 +1,36 @@
+#+OPTIONS: num:nil toc:nil
+#+AUTHOR: Forrest A. Smith
+#+TITLE: From GUI to Script
+** Save Poses in the GUI
+You can save poses to a file using the GUI.
+1. Select *File -> Save Poses* from the menubar.
+2. Navigate to the directory where you want to save the file
+3. Enter the filename you want to save the poses to.
+
+** Loading Poses into a Python Program
+We need the ~json~ module to load the poses into our program.
+
+#+BEGIN_SRC python
+import json
+#+END_SRC
+
+We can import the poses directly into a program variable. *You'll need the full path to the file*.
+
+#+BEGIN_SRC python
+  with open('/home/pi/my_poses.json', 'r') as f:
+      poses = json.load(f)
+#+END_SRC
+
+** Using Imported Poses
+
+The poses are imported as a Python dictionary.  With this dictionary, we can access our poses using the names we assigned them in the GUI.  Access a pose with the name "max" in the following way:
+
+#+BEGIN_SRC python
+max_pose = poses['max']
+#+END_SRC
+
+~max_pose~ is now a dictionary containing all of the pose information.  We can move the arm to this position like this:
+
+#+BEGIN_SRC
+arm.move(**max_pose)
+#+END_SRC

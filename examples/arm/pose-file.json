@@ -1,0 +1,23 @@
+{
+   "home":{
+      "base":50,
+      "shoulder":50,
+      "elbow":50,
+      "wrist":50,
+      "gripper":50
+   },
+   "max":{
+      "base":60,
+      "shoulder":60,
+      "elbow":60,
+      "wrist":60,
+      "gripper":60
+   },
+   "min":{
+      "base":40,
+      "shoulder":40,
+      "elbow":40,
+      "wrist":40,
+      "gripper":40
+   }
+}
