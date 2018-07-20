@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module arm</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>arm</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/forrest/Library/Mobile%20Documents/com%7Eapple%7ECloudDocs/projects/dev/rpi/rpi/arm.py">/Users/forrest/Library/Mobile Documents/com~apple~CloudDocs/projects/dev/rpi/rpi/arm.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-<br>
+#&nbsp;Author:&nbsp;Forrest&nbsp;Smith<br>
+#<br>
+#&nbsp;Credits:&nbsp;Inspired&nbsp;by&nbsp;a&nbsp;python&nbsp;script&nbsp;authored&nbsp;by&nbsp;Garry&nbsp;Spencer</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="arm.html#Arm">Arm</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Arm">class <strong>Arm</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;defines&nbsp;a&nbsp;command&nbsp;<a href="builtins.html#object">object</a>&nbsp;to&nbsp;hold&nbsp;various<br>
+parameters&nbsp;needed&nbsp;to&nbsp;build&nbsp;/&nbsp;send&nbsp;a&nbsp;serial&nbsp;command<br>
+to&nbsp;the&nbsp;Lynxmotion&nbsp;controller.<br>
+&nbsp;<br>
+The&nbsp;command&nbsp;is&nbsp;sent&nbsp;using&nbsp;the&nbsp;`com`&nbsp;attribute.&nbsp;This&nbsp;should<br>
+be&nbsp;a&nbsp;valid&nbsp;pyserial&nbsp;<a href="builtins.html#object">object</a>.<br>
+&nbsp;<br>
+All&nbsp;parameters&nbsp;are&nbsp;optional&nbsp;but&nbsp;must&nbsp;be&nbsp;between&nbsp;1&nbsp;and&nbsp;100.<br>
+Default&nbsp;value&nbsp;is&nbsp;50.<br>
+&nbsp;<br>
+A&nbsp;note&nbsp;on&nbsp;servo&nbsp;channels:<br>
+-------------------------<br>
+The&nbsp;channels&nbsp;here&nbsp;are&nbsp;numbered&nbsp;from&nbsp;0&nbsp;to&nbsp;4&nbsp;with&nbsp;0&nbsp;being&nbsp;the<br>
+base&nbsp;and&nbsp;4&nbsp;the&nbsp;gripper.&nbsp;Here&nbsp;is&nbsp;the&nbsp;full&nbsp;list&nbsp;of&nbsp;the&nbsp;channel<br>
+assignments:<br>
+&nbsp;<br>
+CH&nbsp;|&nbsp;Servo<br>
+------------<br>
+0&nbsp;&nbsp;|&nbsp;base<br>
+1&nbsp;&nbsp;|&nbsp;shoulder<br>
+2&nbsp;&nbsp;|&nbsp;elbow<br>
+3&nbsp;&nbsp;|&nbsp;wrist<br>
+4&nbsp;&nbsp;|&nbsp;gripper<br>
+_____________<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Arm-__init__"><strong>__init__</strong></a>(self, speed=50, base=50, shoulder=50, elbow=50, wrist=50, gripper=50, com=None, time=0)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Arm-__setattr__"><strong>__setattr__</strong></a>(self, attr, value)</dt><dd><tt>Implement&nbsp;setattr(self,&nbsp;name,&nbsp;value).</tt></dd></dl>
+
+<dl><dt><a name="Arm-__str__"><strong>__str__</strong></a>(self)</dt><dd><tt>return&nbsp;a&nbsp;string&nbsp;representation&nbsp;of&nbsp;an&nbsp;<a href="#Arm">Arm</a>&nbsp;instance.<br>
+Allows&nbsp;the&nbsp;use&nbsp;of&nbsp;print(my_arm)</tt></dd></dl>
+
+<dl><dt><a name="Arm-default_params"><strong>default_params</strong></a>(self)</dt><dd><tt>Returns&nbsp;all&nbsp;position&nbsp;parameters&nbsp;to&nbsp;the&nbsp;default&nbsp;of&nbsp;50</tt></dd></dl>
+
+<dl><dt><a name="Arm-dump_params"><strong>dump_params</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;position/speed&nbsp;params.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;especially&nbsp;useful&nbsp;when&nbsp;saving&nbsp;teach&nbsp;points.</tt></dd></dl>
+
+<dl><dt><a name="Arm-home"><strong>home</strong></a>(self)</dt><dd><tt>Returns&nbsp;all&nbsp;servos&nbsp;to&nbsp;the&nbsp;midpoint&nbsp;(home)&nbsp;position.</tt></dd></dl>
+
+<dl><dt><a name="Arm-move"><strong>move</strong></a>(self, **kwargs)</dt><dd><tt>Sends&nbsp;the&nbsp;proper&nbsp;commands&nbsp;to&nbsp;the&nbsp;SCC32&nbsp;using&nbsp;com</tt></dd></dl>
+
+<dl><dt><a name="Arm-scale_params"><strong>scale_params</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Arm-set_params"><strong>set_params</strong></a>(self, **kwargs)</dt><dd><tt>Update&nbsp;params&nbsp;based&nbsp;on&nbsp;key,value&nbsp;pairs&nbsp;in&nbsp;kwargs.<br>
+Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;my_arm&nbsp;=&nbsp;<a href="#Arm">Arm</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;my_arm.<a href="#Arm-set_params">set_params</a>(speed=100,base=50)<br>
+&nbsp;<br>
+or&nbsp;with&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;key,value&nbsp;pairs<br>
+&nbsp;&nbsp;&nbsp;&nbsp;d&nbsp;=&nbsp;{'speed':100,&nbsp;'base':50}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;my_arm.<a href="#Arm-set_params">set_params</a>(**d)</tt></dd></dl>
+
+<dl><dt><a name="Arm-to_command"><strong>to_command</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;command&nbsp;string&nbsp;for&nbsp;the&nbsp;current&nbsp;parameters</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-scale"><strong>scale</strong></a>(num, min, max)</dt><dd><tt>For&nbsp;num&nbsp;between&nbsp;0&nbsp;and&nbsp;100,&nbsp;returns&nbsp;number&nbsp;scaled&nbsp;to&nbsp;a&nbsp;range<br>
+based&nbsp;on&nbsp;Garry"s&nbsp;scaling.</tt></dd></dl>
+</td></tr></table>
+</body></html>
