@@ -1,0 +1,71 @@
+#+OPTIONS: num:nil toc:nil
+#+AUTHOR: Forrest A. Smith
+
+** Opening and Running the Example
+1. Open the ~lcd_countdown.py~ file in IDLE (or Thonny).
+2. Press ~F5~ to run the module.
+** How does the program work?
+*** Import Statements
+This line imports the ~lcd~ class that we will use to interface with the LCD.  A *class* is a collection of related properties and functions.  Think of a class as a template that we use to create program objects that we can use in our program.
+#+BEGIN_SRC python
+  from rpi.lcd import lcd
+#+END_SRC
+
+Here, we import the ~serial~ module.  We control the LCD module with serial commands. As you might imagine, the ~rpi.lcd~ module depends on the serial module to communicate with the LCD.
+
+#+BEGIN_SRC python
+  import serial
+#+END_SRC
+
+We've imported this module before! Whenever we need to add a time delay in a program, we need to import the ~sleep~ class from the ~time~ module.
+#+BEGIN_SRC python
+  from time import sleep
+#+END_SRC
+*** Open the serial port
+Here's where we open the serial port for communication.  Here ~com~ is /just/ a symbol (or variable name) that we choose.  The rest of the line opens up the ~/dev/ttyS0~ device port for serial communication with a speed of 9600 bits per second (or 9600 baud).
+
+#+BEGIN_SRC python
+  # open the serial port
+  com = serial.Serial('/dev/ttyS0', 9600)
+#+END_SRC
+
+/Note:/ the UART on the Raspberry pi maps to the device ~/dev/ttyS0~. There are other ports available for serial communication. The first USB serial device you connect to the Pi would map to ~/dev/ttyUSB0~.
+*** Create and ~lcd~ object
+Create an ~lcd~ object and pass it the ~Serial~ object--we assigned it to the ~com~ symbol. Note that the new ~lcd~ object is assigned to the symbol ~disp~.  ~disp~ is an ~lcd~ object now.
+#+BEGIN_SRC python
+  disp = lcd(com=com)
+#+END_SRC
+
+~lcd~ objects have many methods that can be called to control the LCD panel.  You can see them all in the documentation located under the ~doc/python~ folder of the repository.
+
+*** Countdown to Zero
+We'll need a variable to store an initial count. Here, we call it...
+#+BEGIN_SRC python
+  time_till_disaster = 15
+#+END_SRC
+
+The following loop will run until ~time_till_disaster~ is equal to zero.
+#+BEGIN_SRC python
+  while time_till_disaster > 0:
+      disp.display_clear()
+      sleep(0.2)
+      disp.text('{}'.format(time_till_disaster))
+      time_till_disaster -= 1  # subtract one second
+      sleep(1)
+#+END_SRC
+
+The following steps occur at each run of the loop:
+1. The display is cleared.
+2. Sleep for 200 ms while the LCD finishes clearing the screen.
+3. The current value of ~time_till_disaster~ is printed to the LCD--note the use of the ~text()~ method.
+4. One 'second' is subtracted from the value of ~time_till_disaster~.
+5. Sleep for 1 second.
+*** Print the doomsday message!
+When ~time_till_disaster~ finally reaches zero, the test expression ~time_till_disaster > 0~ returns a ~False~ value, so the ~while~ loop is skipped. The next line after the loop is then executed.
+
+The last two lines print the final value of the time, and the message "Time's UP!"
+#+BEGIN_SRC python
+  # time_till_disaster is now 0 seconds
+  disp.text('{}'.format(time_till_disaster))
+  disp.text("Time's UP!")
+#+END_SRC
