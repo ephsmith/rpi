@@ -16,7 +16,7 @@ cowsay "what do you call a cow with no legs?"
 
 /Funny! Right?/
 
-The cow didn't give us the puchline, so issue this command:
+The cow didn't give us the punchline, so issue this command:
 
 #+BEGIN_SRC bash
 cowsay -d "GROUND BEEF!"
