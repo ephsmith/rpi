@@ -1,5 +1,5 @@
 * Using the Examples
-There are three basic steps to using the examples:
+There are four basic steps to using the examples:
 
 1. pull the most current version of the repository
 2. install the ~rpi~ package
